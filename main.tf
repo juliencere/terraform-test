@@ -10,7 +10,7 @@ terraform {
 backend "remote" {
    organization = "konverto-terraform"
   workspaces {
-    name = "Example-Workspace"
+    name = "terraform-test"
   }
  }
 }
