@@ -7,12 +7,12 @@ terraform {
     }
   }
 
-+ backend "remote" {
-+   organization = "konverto-terraform"
-+   workspaces {
-+     name = "Example-Workspace"
-+   }
-+ }
+backend "remote" {
+   organization = "konverto-terraform"
+  workspaces {
+    name = "Example-Workspace"
+  }
+ }
 }
 
 provider "azurerm" {
