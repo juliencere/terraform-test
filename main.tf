@@ -170,5 +170,5 @@ resource "azurerm_app_service" "aas-two" {
     name  = "Database"
     type  = "SQLServer"
     value = "Server=some-server.mydomain.com;Integrated Security=SSPI"
-  }
+  } 
 }
