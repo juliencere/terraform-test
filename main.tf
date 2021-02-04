@@ -147,8 +147,8 @@ resource "azurerm_resource_group" "rg-two" {
 
 resource "azurerm_app_service_plan" "aasp-two" {
   name                = "example-appserviceplan-two"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.rg-two.location
+  resource_group_name = azurerm_resource_group.rg-two.name
 
   sku {
     tier = "Standard"
