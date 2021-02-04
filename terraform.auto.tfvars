@@ -1,2 +1,2 @@
-location       = "ukwest"
+location       = "westus2"
 prefix         = "tf"
