@@ -147,7 +147,7 @@ resource "azurerm_app_service_plan" "aasp-two" {
 
   sku {
     tier = "Standard"
-    size = "F1"
+    size = "S1"
   }
 }
 
