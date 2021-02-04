@@ -106,7 +106,7 @@ resource "azurerm_virtual_machine" "vm" {
   vm_size               = "Standard_DS1_v2"
 
   storage_os_disk {
-    name              = "myOsDisk"
+    name              = "myOsDiskAgain"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Premium_LRS"
@@ -138,4 +138,37 @@ data "azurerm_public_ip" "ip" {
 
 output "public_ip_address" {
   value = data.azurerm_public_ip.ip.ip_address
+}
+
+resource "azurerm_app_service_plan" "aasp-two" {
+  name                = "example-appserviceplan-two"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  sku {
+    tier = "Standard"
+    size = "S1"
+  }
+}
+
+resource "azurerm_app_service" "aas-two" {
+  name                = "example-app-service-two"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  app_service_plan_id = azurerm_app_service_plan.aasp-two.id
+
+  site_config {
+    dotnet_framework_version = "v4.0"
+    scm_type                 = "LocalGit"
+  }
+
+  app_settings = {
+    "SOME_KEY" = "some-value"
+  }
+
+  connection_string {
+    name  = "Database"
+    type  = "SQLServer"
+    value = "Server=some-server.mydomain.com;Integrated Security=SSPI"
+  }
 }
