@@ -140,13 +140,13 @@ output "public_ip_address" {
   value = data.azurerm_public_ip.ip.ip_address
 }
 
-resource "azurerm_resource_group" "example" {
-  name     = "example-resources"
+resource "azurerm_resource_group" "rg-two" {
+  name     = "example-resources-two"
   location = "West Europe"
 }
 
-resource "azurerm_app_service_plan" "example" {
-  name                = "example-appserviceplan"
+resource "azurerm_app_service_plan" "aasp-two" {
+  name                = "example-appserviceplan-two"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 
@@ -156,11 +156,11 @@ resource "azurerm_app_service_plan" "example" {
   }
 }
 
-resource "azurerm_app_service" "example" {
-  name                = "example_web_app_sdfsdfs"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  app_service_plan_id = azurerm_app_service_plan.example.id
+resource "azurerm_app_service" "aas-two" {
+  name                = "example-app-service-two"
+  location            = azurerm_resource_group.rg-two.location
+  resource_group_name = azurerm_resource_group.rg-two.name
+  app_service_plan_id = azurerm_app_service_plan.aasp-two.id
 
   site_config {
     dotnet_framework_version = "v4.0"
