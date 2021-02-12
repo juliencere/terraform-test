@@ -9,7 +9,7 @@ terraform {
 
 backend "remote" {
    organization = "konverto-terraform"
-   workspaces {
+     workspaces {
     name = "terraform-test"
   }
  }
